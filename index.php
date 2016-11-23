@@ -1,16 +1,16 @@
 <?php include("./includes/header.inc"); ?>
 
-	
-					<h2>Home</h2>
+  
+          <h2>Home</h2>
                     
-                  	<?php
-						// Display database connection error (if any).
-						$error_msg = "";
-	                    $conn = @mysqli_connect(DB_SERVER, DB_USER, DB_PWD);
-						if (!$conn) {
-						?>
-                        	<div class="messagebox">
-							<font class="errorTitle">DATABASE CONNECTION ERROR</font><br /><br />
+                    <?php
+            // Display database connection error (if any).
+            $error_msg = "";
+                      $conn = @mysqli_connect(DB_SERVER, DB_USER, DB_PWD);
+            if (!$conn) {
+            ?>
+                          <div class="messagebox">
+              <font class="errorTitle">DATABASE CONNECTION ERROR</font><br /><br />
                             The script was unable to connect to your database with the current settings.<br /><br /><br />
                             <font class="important">Solution #1</font><br />
                             Database connection parameters are incorrect. Edit the configuration file 
@@ -20,18 +20,18 @@
                             <font class="important">Solution #2</font><br />
                             MySQL is not installed, it is not started or you have not correctly configured it. Refer to the installation 
                             guide on the website if you want to learn how to make a default installation of this environment.
-                        	<br /><br /><br />
-                        	<i><?php echo mysqli_error(); ?></i><br /><br />
-                        	</div>
+                          <br /><br /><br />
+                          <i><?php echo mysqli_error(); ?></i><br /><br />
+                          </div>
                     <?php
-						}
-						else
-						{
-							// Display database setup (if database does not exist).
-							$query = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '".DB_NAME."'";
-							$result = mysqli_query($query);
-							if (mysqli_num_rows($result)==0) {
-								?>
+            }
+            else
+            {
+              // Display database setup (if database does not exist).
+              $query = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '".DB_NAME."'";
+              $result = mysqli_query($conn, $query);
+              if (mysqli_num_rows($result)==0) {
+                ?>
                                 <div class="messagebox">
                                 <font class="errorTitle" style="color:#99cc00;">SCHEMA DOES NOT EXIST</font><br /><br />
                                 The schema used by the simaulation environment (<font style="color:#fff;"><?php echo DB_NAME; ?></font>) does not exist on the database. 
@@ -44,13 +44,13 @@
                                 permissions to delete tables, create a schema, create tables, etc.
                                 <br /><br /><br />
                                 </div>
-							<?php
-							}
-							else
-							{
-                            	// Display normal homepage.
-								?>
-              					<p>Congratulations, you got your PHP server working!</p>
+              <?php
+              }
+              else
+              {
+                              // Display normal homepage.
+                ?>
+                        <p>Congratulations, you got your PHP server working!</p>
                                 
            
                                 <h2 style="padding-top:30px;">Context of the simulation</h2>
@@ -66,10 +66,10 @@
             
                                 </p>
                                 <?php
-							}
-						}
-					?>
-					
+              }
+            }
+          ?>
+          
                     
                     
                     
